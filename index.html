@@ -219,18 +219,18 @@
                 <img src="./assets/image2.png" class="w-full h-full object-cover mt-10">
 
                 <!-- Top Scrolling Text (Left to Right) -->
-                <div class="absolute top-2 left-0 w-full">
-                    <p class="text-white text-lg font-bold whitespace-nowrap animate-scroll-left image-text">
+                <div class="absolute top-2 left-0 w-full overflow-hidden">
+                    <p class="text-white text-lg font-bold whitespace-nowrap image-text" id="scrollLeft">
                         Sustainable • Eco-Friendly • Renewable
                     </p>
                 </div>
 
-                <!-- Bottom Scrolling Text (Right to Left) -->
-                <div class="absolute bottom-2 right-0 w-full">
-                    <p class="text-white text-lg font-bold whitespace-nowrap animate-scroll-right image-text">
+                <div class="absolute bottom-2 right-0 w-full overflow-hidden">
+                    <p class="text-white text-lg font-bold whitespace-nowrap image-text" id="scrollRight">
                         Recyclable • Fossil-Free • Future-Ready
                     </p>
                 </div>
+
             </div>
             <img id="rotatingImage" src="./assets/logo__3_-removebg-preview.png" class="w-80 h-60 ">
         </div>
@@ -267,7 +267,29 @@
 
 
     </script>
-   
+    <script>
+        function startScrolling(element, direction, speed) {
+            let position = direction === "left" ? -100 : 100; // Start outside the screen
+
+            function move() {
+                position += (direction === "left" ? 1 : -1); // Move left or right
+                element.style.transform = `translateX(${position}%)`;
+
+                if (direction === "left" && position >= 100) {
+                    position = -100; // Reset to start when it reaches the right
+                } else if (direction === "right" && position <= -100) {
+                    position = 100; // Reset to start when it reaches the left
+                }
+            }
+
+            setInterval(move, speed); // Adjust speed
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            startScrolling(document.getElementById("scrollLeft"), "left", 90);
+            startScrolling(document.getElementById("scrollRight"), "right", 90);
+        });
+    </script>
 
 
 
@@ -275,7 +297,7 @@
     <script>
         let angle = 0;
         function rotateImage() {
-            angle += 0.5; 
+            angle += 0.5; // Adjust speed by changing this value
             document.getElementById("rotatingImage").style.transform = `rotate(${angle}deg)`;
             requestAnimationFrame(rotateImage);
         }

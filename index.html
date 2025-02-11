@@ -275,7 +275,7 @@
     <script>
         let angle = 0;
         function rotateImage() {
-            angle += 0.5; // Adjust speed by changing this value
+            angle += 0.5; 
             document.getElementById("rotatingImage").style.transform = `rotate(${angle}deg)`;
             requestAnimationFrame(rotateImage);
         }

@@ -267,30 +267,7 @@
 
 
     </script>
-    <script>
-        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-        gsap.from(".card", {
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: ".cards-container",
-                start: "top center",
-                end: "bottom center",
-                scrub: true
-            }
-        });
-
-        ScrollTrigger.create({
-            trigger: ".cards-container",
-            start: "bottom center",
-            end: "bottom top",
-            onEnter: () => {
-                gsap.to(window, { scrollTo: { y: ".cards-container", autoKill: false }, duration: 1 });
-            }
-        });
-    </script>
+   
 
 
 
